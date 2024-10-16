@@ -1,1 +1,105 @@
-<p>card-form works!</p>
+<button class="btn btn-primary mb-3" routerLink="/card-list">Go Back to Card List</button>
+
+<div *ngIf="successMessage" class="alert alert-success" role="alert">
+  {{ successMessage }}
+</div>
+
+<!-- Improved Header -->
+<h2 class="text-center my-4" style="font-size: 2rem; font-weight: bold; color: #007bff;">
+  Add New Business Card
+</h2>
+<div class="align-items-center justify-content-center">
+  <div class="d-flex align-items-center justify-content-center">
+    <hr class="flex-fill" />
+    <span class="mx-2" style="font-weight: bold;">OR</span>
+    <hr class="flex-fill" />
+  </div>
+  <p class="text-center" style="font-size: 1.1rem;">For Uploading File Note That You Can Make Multiple Cards</p>
+  <div class="text-center">
+    <button class="btn btn-primary mb-3" routerLink="/card-inout-by-file">Go to Upload Files</button>
+  </div>
+</div>
+
+<form [formGroup]="cardForm" (ngSubmit)="submitCard()" class="container mt-4 transition-form" style="max-width: 800px;">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Left Side of the Form -->
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input id="name" formControlName="name" class="form-control" required />
+        <div *ngIf="cardForm.get('name')?.invalid && (cardForm.get('name')?.touched)">
+          <small class="text-danger">Name is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" formControlName="gender" class="form-control" required>
+          <option value="">Select...</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <div *ngIf="cardForm.get('gender')?.invalid && (cardForm.get('gender')?.touched)">
+          <small class="text-danger">Gender is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input type="date" id="dateOfBirth" formControlName="dateOfBirth" class="form-control" required />
+        <div *ngIf="cardForm.get('dateOfBirth')?.invalid && (cardForm.get('dateOfBirth')?.touched)">
+          <small class="text-danger">Date of Birth is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" type="email" formControlName="email" class="form-control" required />
+        <div *ngIf="cardForm.get('email')?.invalid && (cardForm.get('email')?.touched)">
+          <small class="text-danger" *ngIf="cardForm.get('email')?.errors?.['required']">Email is required.</small>
+          <small class="text-danger" *ngIf="cardForm.get('email')?.errors?.['email']">Invalid email format.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input id="phone" formControlName="phone" class="form-control" required />
+        <div *ngIf="cardForm.get('phone')?.invalid && (cardForm.get('phone')?.touched)">
+          <small class="text-danger">Phone number is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <textarea id="address" formControlName="address" class="form-control" required></textarea>
+        <div *ngIf="cardForm.get('address')?.invalid && (cardForm.get('address')?.touched)">
+          <small class="text-danger">Address is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="photo">Photo:</label>
+        <input type="file" accept="image/*" (change)="onPhotoSelected($event)" class="form-control-file" />
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="d-flex align-items-center justify-content-center mt-4">
+        <hr class="flex-fill" />
+        <span class="mx-2" style="font-weight: bold;">OR Use QR Code</span>
+        <hr class="flex-fill" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Preview and Submit Buttons -->
+  <div class="d-flex justify-content-center mt-4">
+    <button type="button" class="btn btn-primary btn-lg me-2" style="padding: 10px 20px; font-size: 18px;">
+      Preview Card
+    </button>
+
+    <button type="submit" class="btn btn-success btn-lg">Add Business Card</button>
+  </div>
+</form>
+
