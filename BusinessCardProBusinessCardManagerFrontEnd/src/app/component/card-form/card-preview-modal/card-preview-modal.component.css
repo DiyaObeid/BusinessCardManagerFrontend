@@ -1,0 +1,11 @@
+.card {
+    border: 1px solid #eaeaea; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+  }
+  
+  .card-photo {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px; /* Slightly round the photo edges */
+  }
+  

@@ -49,23 +49,17 @@ export class CardService {
 
 
 addCard(card: AddBusinessCard): Observable<any> {
-  const formData = new FormData();
-  
-  // Append the fields to formData
+  const formData = new FormData();  
   formData.append('Name', card.name);
   formData.append('Email', card.email);
   formData.append('Phone', card.phone);
   formData.append('Gender', card.gender);
   formData.append('DateOfBirth', card.dateOfBirth.toString());
   formData.append('Address', card.address);
-
-  // If there's a photo file, append it
   if (card.photo) {
     console.log("from service");
     formData.append('PhotoFile', card.photo,card.name);
   }
-
-  // Send the POST request
   return this.http.post(`${BaseUrl}${AddCard}`, formData);
 }
 

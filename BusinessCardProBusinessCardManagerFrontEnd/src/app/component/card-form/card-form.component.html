@@ -90,12 +90,30 @@
         <span class="mx-2" style="font-weight: bold;">OR Use QR Code</span>
         <hr class="flex-fill" />
       </div>
+
+      <div class="qr-scanner-container mt-4">
+        <button class="btn btn-primary" (click)="toggleCamera()">
+          {{ cameraOpen ? 'Close Camera' : 'Open Camera' }}
+        </button>
+
+        <div class="scanner mt-3" *ngIf="cameraOpen">
+          <zxing-scanner
+            (scanSuccess)="onCodeResult($event)"
+            [formats]="allowedFormats"
+            [device]="selectedDevice">
+          </zxing-scanner>
+        </div>
+
+        <div class="scanned-result mt-3" *ngIf="qrResultString">
+          <p class="result-text">Scanned Successfully!</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- Preview and Submit Buttons -->
   <div class="d-flex justify-content-center mt-4">
-    <button type="button" class="btn btn-primary btn-lg me-2" style="padding: 10px 20px; font-size: 18px;">
+    <button type="button" class="btn btn-primary btn-lg me-2" (click)="openPreview()" style="padding: 10px 20px; font-size: 18px;">
       Preview Card
     </button>
 
@@ -103,3 +121,4 @@
   </div>
 </form>
 
+<card-preview-modal *ngIf="previewData" [cardData]="previewData"></card-preview-modal>

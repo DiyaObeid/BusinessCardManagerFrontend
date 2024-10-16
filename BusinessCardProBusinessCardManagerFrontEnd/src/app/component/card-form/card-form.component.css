@@ -1,0 +1,22 @@
+.qr-scanner-container {
+    text-align: center; /* Centers the content */
+  }
+  
+  .scanner {
+    padding: 10px; /* Remove any padding */  
+    border: 3px dashed #007bff; /* Adds a dashed border for the scanner area */
+    border-radius: 5px; /* Rounds the corners */
+    background-color: #f8f9fa; /* Light background for the scanner area */
+  }
+  
+  .scanned-result {
+    background-color: #e9ecef; /* Light grey background for scanned result */
+    
+    border-radius: 10px; /* Rounds the corners */
+  }
+  
+  .result-text {
+    font-weight: bold; /* Makes the label bold */
+    color: #343a40; /* Dark grey color for text */
+  }
+  

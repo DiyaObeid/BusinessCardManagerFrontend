@@ -37,6 +37,19 @@ export class CardListComponent {
       }
     );
   }
-  
+  deleteCard(card: BusinessCard) {
+    console.log(card.id);
+    if (confirm(`Are you sure you want to delete ${card.name}'s business card?`)) {
+      this.cardService.deleteCard(card.id).subscribe({
+        next: () => {
+          console.log(`${card.name}'s business card deleted successfully.`);
+          this.loadCards(); // Refresh the card list after deletion
+        },
+        error: (err) => {
+          console.error('Error deleting business card:', err);
+        }
+      });
+    }
+  }
  
 }
