@@ -1,0 +1,50 @@
+<div class="container mt-4">
+    <h2 class="mb-3">Business Cards</h2>
+    <button class="btn btn-primary mb-3" routerLink="/card-form">Add New Business Card</button>
+    <form  class="mb-3">
+      <div class="input-group">
+        <select class="form-select" [(ngModel)]="searchTerm" name="searchTerm">
+          <option value="name">Name</option>
+          <option value="dateOfBirth">Date of Birth</option>
+          <option value="phone">Phone</option>
+          <option value="gender">Gender</option>
+          <option value="email">Email</option>
+        </select>
+        <input type="text" [(ngModel)]="searchString" name="searchString" class="form-control" placeholder="Search" />
+        <button type="submit" class="btn btn-secondary">Search</button>
+      </div>
+    </form>
+  
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Date of Birth</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Actions</th>
+          <th>photo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let card of cards">
+          <td>{{ card.name }}</td>
+          <td>{{ card.gender }}</td>
+          <td>{{ card.dateOfBirth | date }}</td>
+          <td>{{ card.email }}</td>
+          <td>{{ card.phone }}</td>
+          <td>{{ card.address }}</td>
+          <img *ngIf="card.photo" [src]="'data:image/jpeg;base64,' + card.photo" alt="{{ card.name }}'s photo" style="max-width: 200px;"/>
+          <td>
+            
+            <button class="btn btn-danger btn-sm">Delete</button>
+            <button class="btn btn-info btn-sm">Export</button>
+              
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <router-outlet></router-outlet>
