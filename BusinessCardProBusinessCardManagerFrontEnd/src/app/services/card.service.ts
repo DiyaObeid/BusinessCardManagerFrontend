@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { BusinessCard } from '../models/business-card.model'; // Adjust the path if necessary
 import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BaseUrl, GetAllCards,DeleteCard,AddCard } from '../shared/api.url'; // Import the constants
+import { BaseUrl, GetAllCards,DeleteCard,AddCard,ImportCard } from '../shared/api.url'; // Import the constants
 import { AddBusinessCard } from '../models/add-business-card.model';
+import { BusinessCardCsvXml } from '../models/business-card-csvxml.model';
 
 @Injectable({
   providedIn: 'root',
@@ -64,7 +65,20 @@ addCard(card: AddBusinessCard): Observable<any> {
 }
 
  
+importBusinessCards(file: File, fileType: string): Observable<BusinessCardCsvXml[]> {
+  const formData: FormData = new FormData();
+  formData.append('file', file);
 
+ 
+  // Include fileType in the request options
+  const httpOptions = {
+      params: {
+          fileType: fileType
+      }
+  };
+
+  return this.http.post<BusinessCardCsvXml[]>(`${BaseUrl}${ImportCard}`, formData, httpOptions);
+}
   
  
   
