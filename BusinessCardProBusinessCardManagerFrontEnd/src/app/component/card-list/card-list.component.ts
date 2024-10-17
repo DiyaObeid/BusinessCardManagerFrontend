@@ -51,5 +51,14 @@ export class CardListComponent {
       });
     }
   }
- 
+  filterBusinessCards() {
+    this.cardService.searchBusinessCards(this.searchTerm, this.searchString).subscribe(
+      (cards) => {
+        this.cards = cards;
+      },
+      (error) => {
+        console.error('Error fetching business cards:', error);
+      }
+    );
+  }
 }
