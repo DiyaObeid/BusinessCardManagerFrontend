@@ -43,7 +43,7 @@ export class CardListComponent {
       this.cardService.deleteCard(card.id).subscribe({
         next: () => {
           console.log(`${card.name}'s business card deleted successfully.`);
-          this.loadCards(); // Refresh the card list after deletion
+          this.loadCards(); // Refresh the card list after deletionhttps://github.com/DiyaObeid/BusinessCardManagerFrontend/pull/8/conflict?name=BusinessCardProBusinessCardManagerFrontEnd%252Fsrc%252Fapp%252Fcomponent%252Fcard-list%252Fcard-list.component.ts&ancestor_oid=3ce1db1a37a6df21d2f0745a8797aaf887f04479&base_oid=fa6e625aedc093caf28a88a3244a1b08a6f475f2&head_oid=83153630f639a9ae9dbadfcac6c069fe513b3cdd
         },
         error: (err) => {
           console.error('Error deleting business card:', err);
@@ -51,14 +51,25 @@ export class CardListComponent {
       });
     }
   }
-  filterBusinessCards() {
-    this.cardService.searchBusinessCards(this.searchTerm, this.searchString).subscribe(
-      (cards) => {
-        this.cards = cards;
+  exportCard(cardId: any): void {
+    const id = parseInt(cardId, 10); // Convert to integer
+    if (isNaN(id)) {
+      console.error('Invalid card ID');
+      return;
+    }
+    this.cardService.exportToCsv(id).subscribe(
+      (blob) => {
+        // Create a link element to download the file
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'BusinessCards.csv'; // Name the downloaded file
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url); // Cleanup
       },
       (error) => {
-        console.error('Error fetching business cards:', error);
-      }
-    );
+        console.error('Error exporting CSV:', error);
   }
 }

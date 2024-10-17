@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BusinessCard } from '../models/business-card.model'; // Adjust the path if necessary
 import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BaseUrl, GetAllCards,DeleteCard,AddCard,ImportCard,FilterCards } from '../shared/api.url'; // Import the constants
+import { BaseUrl, GetAllCards,DeleteCard,AddCard,ImportCard,ExportCards } from '../shared/api.url'; // Import the constants
 import { AddBusinessCard } from '../models/add-business-card.model';
 import { BusinessCardCsvXml } from '../models/business-card-csvxml.model';
 
@@ -91,9 +91,15 @@ importBusinessCards(file: File, fileType: string): Observable<BusinessCardCsvXml
   
  
   
-  
- 
- 
-
-
+exportToCsv(id: number): Observable<Blob> {
+  return this.http.get(`${BaseUrl}${ExportCards}/${id}`, {
+    responseType: 'blob' // Specify the response type as blob for file download
+  });
 }
+}
+
+ 
+ 
+
+
+
