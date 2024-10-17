@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { CardListComponent } from './component/card-list/card-list.component';
 import { CardFormComponent } from './component/card-form/card-form.component';
+import { CardFormInputByFileComponent } from './component/card-form/card-form-input-by-file/card-form-input-by-file.component'; 
 export const routes: Routes = [
     
     {
@@ -15,5 +16,8 @@ export const routes: Routes = [
       path: 'card-form', // New route for the CardFormComponent
       component: CardFormComponent,
   },
-
+  {
+    path: 'card-inout-by-file', // New route for the CardFormComponent
+    component: CardFormInputByFileComponent,
+},
 ];
