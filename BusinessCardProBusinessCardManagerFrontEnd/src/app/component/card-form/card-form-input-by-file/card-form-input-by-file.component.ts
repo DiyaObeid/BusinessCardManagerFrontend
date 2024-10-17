@@ -12,7 +12,7 @@ import { AddBusinessCard } from '../../../models/add-business-card.model';
 @Component({
   selector: 'app-card-form-input-by-file',
   standalone: true,
-  imports: [CommonModule, RouterModule, CardPreviewModal],
+  imports: [ CommonModule, RouterModule, CardPreviewModal],
   templateUrl: './card-form-input-by-file.component.html',
   styleUrls: ['./card-form-input-by-file.component.css']
 })
