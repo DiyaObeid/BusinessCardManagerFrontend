@@ -43,7 +43,7 @@ export class CardListComponent {
       this.cardService.deleteCard(card.id).subscribe({
         next: () => {
           console.log(`${card.name}'s business card deleted successfully.`);
-          this.loadCards(); // Refresh the card list after deletion
+          this.loadCards(); // Refresh the card list after deletionhttps://github.com/DiyaObeid/BusinessCardManagerFrontend/pull/8/conflict?name=BusinessCardProBusinessCardManagerFrontEnd%252Fsrc%252Fapp%252Fcomponent%252Fcard-list%252Fcard-list.component.ts&ancestor_oid=3ce1db1a37a6df21d2f0745a8797aaf887f04479&base_oid=fa6e625aedc093caf28a88a3244a1b08a6f475f2&head_oid=83153630f639a9ae9dbadfcac6c069fe513b3cdd
         },
         error: (err) => {
           console.error('Error deleting business card:', err);
@@ -71,7 +71,5 @@ export class CardListComponent {
       },
       (error) => {
         console.error('Error exporting CSV:', error);
-      }
-    );
   }
 }
