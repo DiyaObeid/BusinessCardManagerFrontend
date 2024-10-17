@@ -78,9 +78,7 @@ addCard(card: AddBusinessCard): Observable<any> {
  
 importBusinessCards(file: File, fileType: string): Observable<BusinessCardCsvXml[]> {
   const formData: FormData = new FormData();
-  formData.append('file', file);
-
- 
+  formData.append('file', file); 
   // Include fileType in the request options
   const httpOptions = {
       params: {
@@ -90,7 +88,6 @@ importBusinessCards(file: File, fileType: string): Observable<BusinessCardCsvXml
 
   return this.http.post<BusinessCardCsvXml[]>(`${BaseUrl}${ImportCard}`, formData, httpOptions);
 }
-
   
  
   
