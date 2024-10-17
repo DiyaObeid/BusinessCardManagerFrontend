@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BusinessCard } from '../models/business-card.model'; // Adjust the path if necessary
 import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BaseUrl, GetAllCards,DeleteCard,AddCard,ImportCard,ExportCards } from '../shared/api.url'; // Import the constants
+import { BaseUrl, GetAllCards,DeleteCard,AddCard,ImportCard,ExportCards,FilterCards } from '../shared/api.url'; // Import the constants
 import { AddBusinessCard } from '../models/add-business-card.model';
 import { BusinessCardCsvXml } from '../models/business-card-csvxml.model';
 
@@ -40,7 +40,6 @@ export class CardService {
       })
     );
   }
-  
   deleteCard(id: string) {
     try {
       const url = `${BaseUrl}${DeleteCard}/${id}`; // Construct the full URL

@@ -4,3 +4,4 @@ export const DeleteCard = "api/BusinessCard/RemoveBusinessCard";
 export const AddCard = "api/BusinessCard/AddBusinessCard";
 export const ImportCard = "api/BusinessCard/ImportBusinessCards";
 export const ExportCards = "api/BusinessCard/export/csv";
+export const FilterCards = "api/BusinessCard/FilterBusinessCards";
