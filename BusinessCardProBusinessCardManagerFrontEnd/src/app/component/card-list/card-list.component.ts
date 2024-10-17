@@ -51,5 +51,27 @@ export class CardListComponent {
       });
     }
   }
- 
+  exportCard(cardId: any): void {
+    const id = parseInt(cardId, 10); // Convert to integer
+    if (isNaN(id)) {
+      console.error('Invalid card ID');
+      return;
+    }
+    this.cardService.exportToCsv(id).subscribe(
+      (blob) => {
+        // Create a link element to download the file
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'BusinessCards.csv'; // Name the downloaded file
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url); // Cleanup
+      },
+      (error) => {
+        console.error('Error exporting CSV:', error);
+      }
+    );
+  }
 }
